@@ -13,7 +13,7 @@
 
 <div class="row">
   <div class="col-6 form-check" style="padding-left: 35px;">
-    <input type="checkbox" class="form-check-input" id="checkAll">
+    <input type="checkbox" class="form-check-input" id="checkAll" (change)="checkAll()" [(ngModel)]="todoCompleted">
     <label class="form-check-label" for="checkAll">Check all</label>
   </div>
 
