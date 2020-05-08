@@ -2,12 +2,12 @@
 
 <div class="form-group">
   <label for="name">Todo:</label>
-  <input class="form-control" id="name" type="text"/>
+  <input class="form-control" id="name" type="text" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()"/>
 </div>
 
-<div class="form-group" style="padding-left: 20px;">
+<div class="form-group" style="padding-left: 20px;" *ngFor="let todo of todos">
   <input type="checkbox" class="form-check-input">
-  <label class="form-check-label checkall-wrap">Title <span>&times;</span></label>
+  <label class="form-check-label checkall-wrap">{{todo.title}} <span>&times;</span></label>
 </div>
 <hr>
 
