@@ -7,7 +7,7 @@
 
 <div class="form-group" style="padding-left: 20px;" *ngFor="let todo of todos">
   <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
-  <label class="form-check-label checkall-wrap" [ngClass]="todo.completed ? 'completed' : ''">{{todo.title}} <span>&times;</span></label>
+  <label class="form-check-label checkall-wrap" [ngClass]="todo.completed ? 'completed' : ''">{{todo.title}} <span (click)="removeTodo(todo.id)">&times;</span></label>
 </div>
 <hr>
 

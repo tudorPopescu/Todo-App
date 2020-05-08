@@ -48,4 +48,8 @@ export class TodoComponent implements OnInit {
     this.todoTitle = '';
   }
 
+  removeTodo(todoId: number) {
+    this.todos = this.todos.filter(todo => todoId !== todo.id);
+  }
+
 }
