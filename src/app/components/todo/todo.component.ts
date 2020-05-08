@@ -10,21 +10,25 @@ export class TodoComponent implements OnInit {
   todos: List[];
   todoId: number;
   todoTitle: string;
+  todoCompleted: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
     this.todoId = 3;
     this.todoTitle = '';
+    this.todoCompleted = false;
 
     this.todos = [
       {
         id: 1,
-        title: 'First todo'
+        title: 'First todo',
+        completed: false
       },
       {
         id: 2,
-        title: 'Second todo'
+        title: 'Second todo',
+        completed: false
       }
     ];
   }
@@ -36,7 +40,8 @@ export class TodoComponent implements OnInit {
 
     this.todos.push({
       id: this.todoId,
-      title: this.todoTitle
+      title: this.todoTitle,
+      completed: this.todoCompleted
     });
 
     this.todoId++;
