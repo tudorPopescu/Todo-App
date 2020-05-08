@@ -33,7 +33,7 @@ export class TodoComponent implements OnInit {
     ];
   }
 
-  addTodo() {
+  addTodo(): void {
     if (this.todoTitle.trim().length === 0) {
       return;
     }
@@ -50,6 +50,10 @@ export class TodoComponent implements OnInit {
 
   removeTodo(todoId: number) {
     this.todos = this.todos.filter(todo => todoId !== todo.id);
+  }
+
+  getItems(): number {
+    return this.todos.filter(todo => !todo.completed).length;
   }
 
 }
