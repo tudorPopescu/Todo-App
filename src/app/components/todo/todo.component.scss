@@ -1,0 +1,14 @@
+.checkall-wrap {
+  position: relative;
+  width: 100%;
+
+  span {
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+}
