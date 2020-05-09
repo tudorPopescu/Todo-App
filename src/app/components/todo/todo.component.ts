@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { List } from '../../interfaces/list';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-todo',
@@ -12,6 +13,7 @@ export class TodoComponent implements OnInit {
   todoTitle: string;
   todoCompleted: boolean;
   editable: boolean;
+  filter: string;
 
   constructor() { }
 
@@ -20,20 +22,33 @@ export class TodoComponent implements OnInit {
     this.todoTitle = '';
     this.todoCompleted = false;
     this.editable = false;
+    this.filter = 'all';
 
     this.todos = [
       {
         id: 1,
-        title: 'First todo',
+        title: 'Learn Angular',
         completed: false,
         edit: false
       },
       {
         id: 2,
-        title: 'Second todo',
+        title: 'Take over the world',
         completed: false,
         edit: false
-      }
+      },
+      {
+        id: 3,
+        title: 'Change car tire',
+        completed: false,
+        edit: false
+      },
+      {
+        id: 4,
+        title: 'Go for a jog',
+        completed: false,
+        edit: false
+      },
     ];
   }
 
@@ -78,4 +93,19 @@ export class TodoComponent implements OnInit {
     return todo.edit = this.editable;
   }
 
+  clearCompleted(): void {
+    this.todos = this.todos.filter(todo => todo.completed === this.todoCompleted);
+  }
+
+  filterTodo(): List[] {
+    if (this.filter === 'all') {
+      return this.todos;
+    } else if (this.filter === 'active') {
+      return this.todos.filter(todo => !todo.completed);
+    } else if (this.filter === 'completed') {
+      return this.todos.filter(todo => todo.completed);
+    }
+
+    return this.todos;
+  }
 }
