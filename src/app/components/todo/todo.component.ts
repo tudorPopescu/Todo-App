@@ -11,6 +11,7 @@ export class TodoComponent implements OnInit {
   todoId: number;
   todoTitle: string;
   todoCompleted: boolean;
+  editable: boolean;
 
   constructor() { }
 
@@ -18,17 +19,20 @@ export class TodoComponent implements OnInit {
     this.todoId = 3;
     this.todoTitle = '';
     this.todoCompleted = false;
+    this.editable = false;
 
     this.todos = [
       {
         id: 1,
         title: 'First todo',
-        completed: false
+        completed: false,
+        edit: false
       },
       {
         id: 2,
         title: 'Second todo',
-        completed: false
+        completed: false,
+        edit: false
       }
     ];
   }
@@ -41,7 +45,8 @@ export class TodoComponent implements OnInit {
     this.todos.push({
       id: this.todoId,
       title: this.todoTitle,
-      completed: this.todoCompleted
+      completed: this.todoCompleted,
+      edit: this.editable
     });
 
     this.todoId++;
@@ -59,4 +64,18 @@ export class TodoComponent implements OnInit {
   checkAll(): void {
     this.todos.forEach(todo => (todo.completed = this.todoCompleted));
   }
+
+  editTodoTitle(todo): boolean {
+    return todo.edit = !this.editable;
+  }
+
+  cancelEditTitle(todo): boolean {
+    return todo.edit = this.editable;
+  }
+
+  updateTitle(todo: List, data: Event): boolean {
+    todo.title = (data.target as HTMLInputElement).value;
+    return todo.edit = this.editable;
+  }
+
 }
