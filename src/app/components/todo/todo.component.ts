@@ -33,6 +33,6 @@ export class TodoComponent implements OnInit {
   }
 
   clearCompleted(): void {
-    this.todoList.clearCompleted(this.todoCompleted);
+    this.todoList.clearCompleted();
   }
 }

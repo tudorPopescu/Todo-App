@@ -79,8 +79,10 @@ export class TodoListService {
     return todo.edit = this.editable;
   }
 
-  clearCompleted(todoCompleted: boolean): void {
-    this.todos = this.todos.filter(todo => todo.completed === todoCompleted);
+  clearCompleted(): void {
+    this.todos = this.todos.filter(todo => !todo.completed);
+    console.log();
+    
   }
 
   filterTodo(): List[] {
