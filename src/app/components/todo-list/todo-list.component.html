@@ -1,0 +1,23 @@
+<input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
+<label
+  class="form-check-label checkall-wrap"
+  [ngClass]="todo.completed ? 'completed' : ''"
+  *ngIf="!todo.edit; else editTitle"
+  (dblclick)="todoList.editTodoTitle(todo)"
+  >
+  {{todo.title}}
+  <span (click)="todoList.removeTodo(todo.id)">&times;</span>
+</label>
+
+<ng-template #editTitle>
+  <input
+    type="text"
+    placeholder="Edit Todo Title"
+    class="form-control"
+    (keyup.esc)="todoList.cancelEditTitle(todo)"
+    autofocus
+    (keyup.enter)="todoList.updateTitle(todo, $event)"
+    [ngClass]="todo.edit ? 'edit-active' : ''"
+    (blur)="todoList.cancelEditTitle(todo)"
+  />
+</ng-template>
