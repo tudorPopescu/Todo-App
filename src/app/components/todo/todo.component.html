@@ -25,6 +25,8 @@
       (keyup.esc)="todoList.cancelEditTitle(todo)"
       autofocus
       (keyup.enter)="todoList.updateTitle(todo, $event)"
+      [ngClass]="todo.edit ? 'edit-active' : ''"
+      (blur)="todoList.cancelEditTitle(todo)"
     />
   </ng-template>
 </div>
