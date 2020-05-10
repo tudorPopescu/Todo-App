@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { List } from '../../interfaces/list';
-import { stringify } from 'querystring';
+import { TodoListService } from './../../services/todo-list.service';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  providers: [TodoListService]
 })
 export class TodoComponent implements OnInit {
   todos: List[];
@@ -15,41 +16,15 @@ export class TodoComponent implements OnInit {
   editable: boolean;
   filter: string;
 
-  constructor() { }
+  constructor(private todoListService: TodoListService) { }
 
   ngOnInit(): void {
+    this.todos = this.todoListService.todosList;
     this.todoId = 3;
     this.todoTitle = '';
     this.todoCompleted = false;
     this.editable = false;
     this.filter = 'all';
-
-    this.todos = [
-      {
-        id: 1,
-        title: 'Learn Angular',
-        completed: false,
-        edit: false
-      },
-      {
-        id: 2,
-        title: 'Take over the world',
-        completed: false,
-        edit: false
-      },
-      {
-        id: 3,
-        title: 'Change car tire',
-        completed: false,
-        edit: false
-      },
-      {
-        id: 4,
-        title: 'Go for a jog',
-        completed: false,
-        edit: false
-      },
-    ];
   }
 
   addTodo(): void {
