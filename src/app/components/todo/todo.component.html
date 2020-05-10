@@ -5,16 +5,16 @@
   <input class="form-control" id="name" type="text" placeholder="What are you doing today?" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()"/>
 </div>
 
-<div class="form-group" style="padding-left: 20px;" *ngFor="let todo of filterTodo()">
+<div class="form-group" style="padding-left: 20px;" *ngFor="let todo of todoList.filterTodo()">
   <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
-  <label
+    <label
     class="form-check-label checkall-wrap"
     [ngClass]="todo.completed ? 'completed' : ''"
     *ngIf="!todo.edit; else editTitle"
-    (dblclick)="editTodoTitle(todo)"
+    (dblclick)="todoList.editTodoTitle(todo)"
   >
     {{todo.title}}
-    <span (click)="removeTodo(todo.id)">&times;</span>
+    <span (click)="todoList.removeTodo(todo.id)">&times;</span>
   </label>
 
   <ng-template #editTitle>
@@ -22,9 +22,9 @@
       type="text"
       placeholder="Edit Todo Title"
       class="form-control"
-      (keyup.esc)="cancelEditTitle(todo)"
+      (keyup.esc)="todoList.cancelEditTitle(todo)"
       autofocus
-      (keyup.enter)="updateTitle(todo, $event)"
+      (keyup.enter)="todoList.updateTitle(todo, $event)"
     />
   </ng-template>
 </div>
@@ -37,16 +37,16 @@
   </div>
 
   <div class="col-6 text-right">
-    <span>{{getItems()}} items left</span>
+    <span>{{todoList.getItems()}} items left</span>
   </div>
 </div>
 <hr>
 
 <div class="row">
   <div class="col-6">
-    <button type="text" class="btn mr-2 filter-btn" (click)="filter='all'">All</button>
-    <button type="text" class="btn mr-2 filter-btn" (click)="filter='active'">Active</button>
-    <button type="text" class="btn filter-btn" (click)="filter='completed'">Completed</button>
+    <button type="text" class="btn mr-2 filter-btn" (click)="todoList.filter='all'">All</button>
+    <button type="text" class="btn mr-2 filter-btn" (click)="todoList.filter='active'">Active</button>
+    <button type="text" class="btn filter-btn" (click)="todoList.filter='completed'">Completed</button>
   </div>
 
   <div class="col-6 text-right">
